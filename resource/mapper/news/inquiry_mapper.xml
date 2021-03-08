@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+				PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="inquiry">
+
+<insert id="writeInquiry" parameterType="com.bc.model.vo.InquiryVO">
+	INSERT INTO MU_INQUIRY
+			(INQ_NUM, INQ_CATEGORY_IDX, INQ_CATEGORY, INQ_SUBJECT, INQ_CONTENT,
+			INQ_WRITER, INQ_DEL_STATUS, INQ_DATE)
+	VALUES (INQUIRY_SEQ.NEXTVAL, #{inq_category_idx}, #{inq_category}, #{inq_subject}, 
+			#{inq_content}, #{inq_writer}, 0, SYSDATE)
+</insert>
+<select id="findByWriter" resultType="com.bc.model.vo.InquiryVO" parameterType="string">
+    SELECT *
+    FROM MU_INQUIRY
+    WHERE INQ_WRITER = #{inq_writer}
+    ORDER BY INQ_NUM DESC
+</select>
+<select id="allInquiries" resultType="com.bc.model.vo.InquiryVO">
+    SELECT *
+    FROM MU_INQUIRY
+    ORDER BY INQ_NUM DESC
+</select>
+
+<select id="currval" resultType="int">
+    SELECT INQUIRY_SEQ.CURRVAL FROM DUAL
+</select>
+
+<select id="findById" resultType="com.bc.model.vo.InquiryVO">
+    SELECT *
+    FROM MU_INQUIRY
+    WHERE INQ_NUM = #{inq_num}
+</select>
+
+<select id="findByInqnum" resultType="com.bc.model.vo.InquiryVO" parameterType="string">
+	SELECT *
+	FROM MU_INQUIRY
+	WHERE INQ_NUM = #{inq_num}
+</select>
+<update id="update" parameterType="com.bc.model.vo.InquiryVO">
+	UPDATE MU_INQUIRY
+	SET INQ_CATEGORY = #{inq_category}, INQ_CATEGORY_IDX = #{inq_category_idx},
+		INQ_SUBJECT = #{inq_subject}, INQ_CONTENT = #{inq_content}
+	WHERE INQ_NUM = #{inq_num}
+</update>
+<update id="delStatus" parameterType="com.bc.model.vo.InquiryVO">
+	UPDATE MU_INQUIRY
+	SET INQ_DEL_STATUS = 1
+	WHERE INQ_NUM = #{inq_num}
+</update>
+
+<!-- 관리자 댓글 -->
+<update id="appendComment" parameterType="com.bc.model.vo.InquiryVO">
+	UPDATE MU_INQUIRY
+	SET INQ_ADMIN_WRITER = #{inq_admin_writer}, INQ_ANSWER = #{inq_answer},
+		INQ_ANS_DATE = SYSDATE
+	WHERE INQ_NUM = #{inq_num}
+</update>
+<update id="delComment" parameterType="com.bc.model.vo.InquiryVO">
+	UPDATE MU_INQUIRY
+	SET INQ_ADMIN_WRITER = null, INQ_ANSWER = null,
+		INQ_ANS_DATE = null
+	WHERE INQ_NUM = #{inq_num}
+</update>
+
+
+<!-- 페이징처리를 위한 행갯수 얻기 --><!-- id 가 admin이면 이름조건 무시 -->
+<select id="totalRow" resultType="int" parameterType="map">
+	SELECT COUNT(*)
+	FROM MU_INQUIRY
+	<where>
+		INQ_DEL_STATUS = 0
+		<if test="id != 'admin'">
+			AND INQ_WRITER = #{writer}
+		</if>
+	</where>
+</select>
+
+<!-- 현재 페이지에 해당하는 행들 얻기(리스트) -->
+<select id="list" resultType="com.bc.model.vo.InquiryVO" parameterType="map">
+	SELECT *
+	FROM (
+	    SELECT ROW_NUMBER() over (ORDER BY INQ_NUM DESC) as RN, I.*
+	    FROM MU_INQUIRY I
+	    <where>
+			INQ_DEL_STATUS = 0
+		    <if test="id != 'admin'">
+				AND INQ_WRITER = #{writer}
+			</if>
+	    </where>
+	)
+	WHERE RN BETWEEN #{startRow} and #{endRow}
+</select>
+
+</mapper>

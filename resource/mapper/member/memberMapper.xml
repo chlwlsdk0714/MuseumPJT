@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+<insert id="join" parameterType="com.bc.model.vo.MemberVO">
+	INSERT INTO MU_MEMBER
+		(MEM_ID, MEM_PWD, MEM_NAME, MEM_SEX, MEM_PHONE
+		,MEM_CELLPHONE, MEM_EMAIL, MEM_ADDR, MEM_JOIN_STATUS)
+	VALUES (#{mem_id}, #{mem_pwd}, #{mem_name}, #{mem_sex}, 
+		#{mem_phone}, #{mem_cellphone}, #{mem_email}, 
+		#{mem_addr}, #{mem_join_status})
+</insert>
+<select id="findById" resultType="com.bc.model.vo.MemberVO" parameterType="string">
+	SELECT * FROM MU_MEMBER
+	WHERE MEM_ID = #{id} AND MEM_JOIN_STATUS = 0
+</select>
+
+<select id="checkId" resultType="int" parameterType="string">
+	SELECT NVL(COUNT(*),0)
+	FROM MU_MEMBER WHERE MEM_ID = #{id}
+</select>
+
+<select id="hasId" resultType="com.bc.model.vo.MemberVO" parameterType="string">
+	SELECT * FROM MU_MEMBER
+	WHERE MEM_ID = #{id}
+</select>
+
+<update id="update" parameterType="com.bc.model.vo.MemberVO">
+	UPDATE MU_MEMBER
+	SET MEM_ID = #{mem_id}, MEM_PWD = #{mem_pwd}, MEM_NAME=#{mem_name},
+		MEM_PHONE = #{mem_phone},
+		MEM_CELLPHONE = #{mem_cellphone}, MEM_EMAIL = #{mem_email}, 
+		MEM_ADDR = #{mem_addr}
+	WHERE MEM_ID = #{mem_id}
+</update>
+	
+<update id="updateToLeave" parameterType="com.bc.model.vo.MemberVO">
+	UPDATE MU_MEMBER
+	SET MEM_JOIN_STATUS = 1
+	WHERE MEM_ID = #{mem_id}
+</update>
+</mapper>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="eddoc">
+	<select id="joineduidx" resultType="com.bc.edu.model.vo.AdminDocJoinOptionVO">
+		SELECT E.EDU_IDX, E.EDU_NAME, D.EDU_DETIDX, D.EDU_IMPT_CONTENTS
+		FROM MU_EDU E, EDU_DETAIL D
+		WHERE E.EDU_IDX = D.EDU_IDX AND DOC_STATUS = 'LD01'
+	</select>
+	
+	<insert id="docinsert" parameterType="com.bc.edu.model.vo.LearnDocumentsVO">
+		INSERT INTO MU_LEARN_DOC(
+			DOC_IDX,
+			DOC_TEXT,
+			DOC_FILENAME,
+			DOC_FILELOCAL,
+			EDU_DETIDX,
+			EDU_IDX,
+			DOC_STATUS
+		)
+		
+		VALUES(MU_LDOC_SEQ.NEXTVAL, #{doc_text}, #{doc_filename}, #{doc_filelocal},
+			#{edu_detidx}, #{edu_idx}, #{doc_status}
+		)
+	</insert>
+	<update id="docupdate" parameterType="com.bc.edu.model.vo.LearnDocumentsVO">
+	
+			UPDATE MU_LEARN_DOC
+		<choose>
+		<when test="doc_filename != ''">
+		SET
+			DOC_TEXT = #{doc_text},
+			DOC_FILENAME = #{doc_filename},
+			DOC_FILELOCAL = #{doc_filelocal},
+			EDU_DETIDX = #{edu_detidx},
+			EDU_IDX = #{edu_idx}
+			WHERE DOC_IDX = #{doc_idx}
+		</when>
+		<otherwise>
+		SET
+			DOC_TEXT = #{doc_text},
+			EDU_DETIDX = #{edu_detidx},
+			EDU_IDX = #{edu_idx}
+			WHERE DOC_IDX = #{doc_idx}
+		</otherwise>
+		</choose>
+		
+	</update>
+	
+	<select id="edulndocvopg" parameterType="Map" resultType="com.bc.edu.model.vo.LearnDocumentsVO">
+SELECT 	NN.*
+FROM    (
+SELECT ROWNUM RN, N.*
+	FROM (SELECT 
+	    D.doc_idx,
+		D.doc_text,
+		D.doc_filename,
+		D.doc_filelocal,
+		D.doc_status,
+		L.edu_period_start,
+		L.edu_period_end,
+		L.edu_impt_contents,
+		D.edu_detidx,
+		D.edu_idx,
+		E.edu_name
+	FROM MU_EDU E, EDU_DETAIL L, MU_LEARN_DOC D
+	WHERE D.edu_detidx = L.edu_detidx and D.EDU_IDX = E.EDU_IDX and d.doc_status = 'LD01'
+    ORDER BY D.DOC_IDX DESC
+		                ) N
+        		) NN
+		WHERE RN BETWEEN #{begin} AND #{end}
+</select>
+
+<select id="LnDocsearchPg" parameterType="Map" resultType="com.bc.edu.model.vo.LearnDocumentsVO">
+SELECT 	NN.*
+FROM    (
+SELECT ROWNUM RN, N.*
+	FROM (SELECT 
+	    D.doc_idx,
+		D.doc_text,
+		D.doc_filename,
+		D.doc_filelocal,
+		D.doc_status,
+		L.edu_period_start,
+		L.edu_period_end,
+		L.edu_impt_contents,
+		D.edu_detidx,
+		D.edu_idx,
+		E.edu_name
+	FROM MU_EDU E, EDU_DETAIL L, MU_LEARN_DOC D
+	WHERE D.edu_detidx = L.edu_detidx and D.EDU_IDX = E.EDU_IDX and d.doc_status = 'LD01'
+  	AND (D.DOC_TEXT LIKE '%' || #{searchText} || '%') OR 
+					(E.edu_name LIKE '%' || #{searchText} || '%')
+    ORDER BY D.DOC_IDX DESC
+		                ) N
+        		) NN
+		WHERE RN BETWEEN #{begin} AND #{end}
+</select>
+
+ 	<select id="edulndocvo" resultType="com.bc.edu.model.vo.LearnDocumentsVO">
+	SELECT 
+	    D.doc_idx,
+		D.doc_text,
+		D.doc_filename,
+		D.doc_filelocal,
+		D.doc_status,
+		L.edu_period_start,
+		L.edu_period_end,
+		L.edu_impt_contents,
+		D.edu_detidx,
+		D.edu_idx,
+		E.edu_name
+	FROM MU_EDU E, EDU_DETAIL L, MU_LEARN_DOC D
+	WHERE D.edu_detidx = L.edu_detidx and D.EDU_IDX = E.EDU_IDX	AND D.DOC_STATUS = 'LD01'
+</select>
+
+<select id="totalrecord" resultType="int">
+		SELECT 	COUNT(DOC_IDX)
+		FROM 	MU_LEARN_DOC
+		WHERE 	DOC_STATUS = 'LD01'
+</select>
+
+	<select id="pickvo" parameterType="string" resultType="com.bc.edu.model.vo.LearnDocumentsVO">
+	SELECT 
+	    D.doc_idx,
+		D.doc_text,
+		D.doc_filename,
+		D.doc_filelocal,
+		D.doc_status,
+		L.edu_period_start,
+		L.edu_period_end,
+		L.edu_impt_contents,
+		D.edu_detidx,
+		D.edu_idx,
+		E.edu_name
+	FROM MU_EDU E, EDU_DETAIL L, MU_LEARN_DOC D
+	WHERE D.edu_detidx = L.edu_detidx and D.EDU_IDX = E.EDU_IDX and DOC_IDX = #{idx}
+			AND DOC_STATUS = 'LD01'
+	</select>
+	
+	
+<update id="docdelete" parameterType="string">
+	UPDATE MU_LEARN_DOC
+		SET DOC_STATUS = 'LD02' 
+	WHERE DOC_IDX = #{temp}
+</update>
+</mapper>

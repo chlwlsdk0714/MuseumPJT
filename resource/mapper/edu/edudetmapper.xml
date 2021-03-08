@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edudet">
+	
+	<select id="totalRecord" resultType="int">
+		SELECT 	COUNT(EDU_DETIDX)
+		FROM 	EDU_DETAIL
+		WHERE 	EDU_DETAILSTATUS = 'EDUDT01' AND EDU_IDX = #{idx}
+	</select>
+	<select id="totalRecordall" resultType="int">
+		SELECT 	COUNT(EDU_DETIDX)
+		FROM 	EDU_DETAIL
+		WHERE 	EDU_DETAILSTATUS = 'EDUDT01'
+	</select>
+	
+	<select id="edualllistpag" parameterType="Map" resultType="detaileduvo">
+		SELECT 	NN.*
+		FROM    (
+		        SELECT ROWNUM RN, N.*
+		        FROM    (
+		                SELECT 		*
+		                FROM 		EDU_DETAIL
+		                WHERE 		EDU_DETAILSTATUS = 'EDUDT01'
+		                ORDER BY 	EDU_IDX DESC
+		                ) N
+        		) NN
+		WHERE 	RN BETWEEN #{begin} AND #{end}
+	</select>
+	<select id="aaaa" parameterType="string" resultType="int">
+		SELECT 	COUNT(EDU_DETIDX)
+		FROM 	EDU_DETAIL
+		WHERE 	
+				         ((EDU_TARGET LIKE '%' || #{searchText} || '%') OR
+		                 (EDU_IMPT_CONTENTS LIKE '%' || #{searchText} || '%') OR
+		                 (EDU_DETAILNAME LIKE '%' || #{searchText} || '%') OR
+		                 (EDU_DETAILTARGET LIKE '%' || #{searchText} || '%'))
+		                  AND 	EDU_DETAILSTATUS = 'EDUDT01'
+	</select>
+	<select id="edusearchlistpag" parameterType="Map" resultType="detaileduvo">
+		SELECT 	NN.*
+		FROM    (
+		        SELECT ROWNUM RN, N.*
+		        FROM    (
+		                SELECT 		*
+		                FROM 		EDU_DETAIL
+		                WHERE 	
+		              (  (EDU_TARGET LIKE '%' || #{searchText} || '%') OR
+		                 (EDU_IMPT_CONTENTS LIKE '%' || #{searchText} || '%') OR
+		                 (EDU_DETAILNAME LIKE '%' || #{searchText} || '%') OR
+		                 (EDU_DETAILTARGET LIKE '%' || #{searchText} || '%')) 
+		                 AND 	EDU_DETAILSTATUS = 'EDUDT01'
+		                ORDER BY 	EDU_IDX DESC
+		                ) N
+        		) NN
+		WHERE 	RN BETWEEN #{begin} AND #{end}
+	</select>
+	
+ 	<select id="edualllistpg" parameterType="Map" resultType="detaileduvo">
+		SELECT 	NN.*
+		FROM    (
+		        SELECT ROWNUM RN, N.*
+		        FROM    (
+		                SELECT 		*
+		                FROM 		EDU_DETAIL
+		                WHERE 		EDU_DETAILSTATUS = 'EDUDT01' AND EDU_IDX = #{idx}
+		                ORDER BY 	EDU_IDX DESC
+		                ) N
+        		) NN
+		WHERE 	RN BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<select id="edudetlist" parameterType="string" resultType="detaileduvo">
+		SELECT * FROM EDU_DETAIL
+		WHERE EDU_IDX = #{edu_idx} AND EDU_DETAILSTATUS = 'EDUDT01'
+	</select>
+	
+	<select id="edudetpick" parameterType="string" resultType="detaileduvo">
+		SELECT * FROM EDU_DETAIL
+		WHERE EDU_DETIDX = #{edu_detidx}  AND EDU_DETAILSTATUS = 'EDUDT01'
+	</select>	
+	
+	<select id="edudetalllist" resultType="detaileduvo">
+		SELECT * FROM EDU_DETAIL  WHERE EDU_DETAILSTATUS = 'EDUDT01'
+	</select>
+	<update id="leandelete" parameterType="string">
+			UPDATE EDU_DETAIL
+			SET EDU_DETAILSTATUS = 'EDUDT02' 
+			WHERE EDU_DETIDX = #{temp}
+	</update>
+	
+	<update id="leanpgupdate" parameterType="com.bc.edu.model.vo.DetailEducationVO">
+		UPDATE EDU_DETAIL
+		<choose>
+		<when test="edu_leanimgname != ''">
+		SET
+		EDU_TARGET = #{edu_target},
+		EDU_IMPT_CONTENTS = #{edu_impt_contents},
+		EDU_DETAILADDR = #{edu_detailaddr},
+		EDU_IDX = #{edu_idx},
+		EDU_DETAILNAME = #{edu_detailname},
+		EDU_PRICE = #{edu_price},
+		EDU_DETAILTARGET = #{edu_detailtarget},
+		EDU_PERIOD_START = #{edu_period_start},
+		EDU_PERIOD_END = #{edu_period_end},
+		EDU_DETAILTIME = #{edu_detailtime},
+		EDU_LEANIMGNAME = #{edu_leanimgname},
+		EDU_LEANIMGLOCAL = #{edu_leanimglocal}
+		WHERE EDU_DETIDX = #{edu_detidx}
+		</when>
+		<otherwise>
+		SET
+		EDU_TARGET = #{edu_target},
+		EDU_IMPT_CONTENTS = #{edu_impt_contents},
+		EDU_DETAILADDR = #{edu_detailaddr},
+		EDU_IDX = #{edu_idx},
+		EDU_DETAILNAME = #{edu_detailname},
+		EDU_PRICE = #{edu_price},
+		EDU_DETAILTARGET = #{edu_detailtarget},
+		EDU_PERIOD_START = #{edu_period_start},
+		EDU_PERIOD_END = #{edu_period_end},
+		EDU_DETAILTIME = #{edu_detailtime}
+		WHERE EDU_DETIDX = #{edu_detidx}
+		</otherwise>
+		</choose>
+	</update>
+	
+	<insert id="leanpgInsert" parameterType="com.bc.edu.model.vo.DetailEducationVO">
+	INSERT INTO EDU_DETAIL(
+	EDU_DETIDX,
+	EDU_TARGET,
+	EDU_IMPT_CONTENTS,
+	EDU_DETAILADDR,
+	EDU_IDX,
+	EDU_DETAILNAME,
+	EDU_PRICE,
+	EDU_DETAILTARGET,
+	EDU_PERIOD_START,
+	EDU_PERIOD_END,
+	EDU_DETAILTIME,
+	EDU_PHONE,
+	EDU_LEANIMGNAME,
+	EDU_LEANIMGLOCAL,
+	EDU_DETAILSTATUS
+	)
+	VALUES(EDU_DETAIL_SEQ.NEXTVAL,
+		#{edu_target},
+		#{edu_impt_contents},
+		#{edu_detailaddr},
+		#{edu_idx},
+		#{edu_detailname},
+		#{edu_price},
+		#{edu_detailtarget},
+		#{edu_period_start},
+		#{edu_period_end},
+		#{edu_detailtime},
+		'02-000-0000',
+		#{edu_leanimgname},
+		#{edu_leanimglocal},
+		'EDUDT01')
+	</insert>
+</mapper>

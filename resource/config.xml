@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+		  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	<!--<setting name="mapUnderscoreToCamelCase" value="true"/> 취합과정 중 에러나서 사용 정지 -->
+	</settings>
+	
+	<typeAliases>
+
+	<!-- EDU -->
+		<typeAlias type="com.bc.edu.model.vo.EducationVO" alias="eduvo"/>
+		<typeAlias type="com.bc.edu.model.vo.DetailEducationVO" alias="detaileduvo"/>
+
+	<!-- NEWS -->	
+		<typeAlias type="com.bc.model.vo.FAQVO" alias="FAQVO"/>
+		<typeAlias type="com.bc.model.vo.NoticeVO" alias="NoticeVO"/>
+		<typeAlias type="com.bc.model.vo.ReviewCommentVO" alias="ReviewCommentVO"/>
+		<typeAlias type="com.bc.model.vo.ReviewVO" alias="ReviewVO"/>
+	</typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+				<dataSource type="POOLED">
+					<property name="driver" value="oracle.jdbc.OracleDriver"/>
+					<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+					<property name="username" value="museum"/>
+					<property name="password" value="museum"/>
+				</dataSource>
+    	</environment>
+	</environments>
+
+	<mappers>
+		<!-- 회원 관리 -->
+		<mapper resource="com/bc/resource/mapper/member/memberMapper.xml"/>
+		
+		<!-- 전시 메뉴 -->
+		<mapper resource="com/bc/resource/mapper/exhibition/exhibMapper.xml"/>
+		
+		<!-- EDU 메뉴 -->
+		<mapper resource="com/bc/resource/mapper/edu/edumapper.xml"/>
+		<mapper resource="com/bc/resource/mapper/edu/edudetmapper.xml"/>
+		<mapper resource="com/bc/resource/mapper/edu/edulearndocmapper.xml"/>
+
+		<!-- NEWS 메뉴 -->
+		<mapper resource="com/bc/resource/mapper/news/faqMapper.xml"/>
+		<mapper resource="com/bc/resource/mapper/news/inquiry_mapper.xml"/>
+		<mapper resource="com/bc/resource/mapper/news/noticeMapper.xml"/>
+		<mapper resource="com/bc/resource/mapper/news/reviewCommentMapper.xml"/>
+		<mapper resource="com/bc/resource/mapper/news/reviewMapper.xml"/>
+
+		
+	</mappers>
+</configuration>

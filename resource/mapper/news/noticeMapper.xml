@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NOTICE">
+
+<!-- News >> 공지사항 맵퍼입니다(담영) -->
+
+
+<!-- (C) 관리자가 새글 쓰기 -->
+	<insert id="insert" parameterType="map">
+		INSERT INTO 	MU_NOTICE
+	  				(	NOTI_IDX, NOTI_SUBJECT, NOTI_CONTENT, 
+						NOTI_WRITER, NOTI_WRITE_DATE, NOTI_HIT	)
+		VALUES 		(
+						MU_NOTICE_SEQ.NEXTVAL,
+ 						#{noti_subject},
+						#{noti_content},
+						'admin',
+						SYSDATE,
+						0
+					)
+	</insert>
+
+
+<!-- (R) 방금 쓴 새글 1개 검색 -->
+	<select id="new" resultType="NoticeVO">
+		SELECT	NN.*
+		FROM 	(
+				SELECT	ROWNUM RN, N.*
+				FROM 	(
+						SELECT 		M.MEM_NAME MEM_NAME, N.*
+						FROM 		MU_NOTICE N
+						JOIN    	MU_MEMBER M
+						ON      	N.NOTI_WRITER = M.MEM_ID
+						WHERE		N.NOTI_DEL_STATUS IS NULL
+						ORDER BY 	NOTI_IDX DESC
+						) N
+				) NN
+		WHERE	RN = 1
+	</select>
+
+
+<!-- (R) 전체 게시글 수 검색 -->
+	<select id="totalRecord" resultType="int">
+		SELECT 	COUNT(NOTI_IDX)
+		FROM 	MU_NOTICE
+		WHERE 	NOTI_DEL_STATUS IS NULL
+	</select>
+
+
+<!-- (R) 페이징 처리하여 전체 게시글 검색 -->
+	<select id="list" parameterType="Map" resultType="NoticeVO">
+		SELECT 	NN.*
+		FROM    (
+		        SELECT ROWNUM RN, N.*
+		        FROM    (
+		                SELECT 		NOTI_IDX, NOTI_WRITER, NOTI_SUBJECT, NOTI_WRITE_DATE, NOTI_HIT
+		                FROM 		MU_NOTICE
+		                WHERE 		NOTI_DEL_STATUS IS NULL
+		                ORDER BY 	NOTI_IDX DESC
+		                ) N
+        		) NN
+		WHERE 	RN BETWEEN #{begin} AND #{end}
+	</select>
+
+
+<!-- (R) 게시글 1개 상세보기 -->
+	<select id="one" resultType="NoticeVO" parameterType="int">
+		SELECT 	M.MEM_NAME MEM_NAME, N.*
+		FROM 	MU_NOTICE N
+		JOIN    MU_MEMBER M
+		ON      N.NOTI_WRITER = M.MEM_ID
+		WHERE 	NOTI_IDX = #{noti_idx}
+	</select>
+
+
+<!-- (R) 검색결과 총 건수 -->
+	<select id="searchRecord" resultType="int" parameterType="String">
+		SELECT		COUNT(NOTI_IDX)
+		FROM		MU_NOTICE
+		WHERE		(NOTI_SUBJECT LIKE '%' || #{searchText} || '%') OR 
+					(NOTI_CONTENT LIKE '%' || #{searchText} || '%') AND
+					(NOTI_DEL_STATUS IS NULL)
+		ORDER BY 	NOTI_IDX DESC
+	</select>
+
+
+<!-- (R) 검색 결과를 페이징 처리하기 -->
+	<select id="searchList" resultType="NoticeVO" parameterType="Map" >
+		SELECT 	NN.*
+		FROM    (
+		        SELECT ROWNUM RN, N.*
+		        FROM    (
+		                SELECT 		NOTI_IDX, NOTI_WRITER, NOTI_SUBJECT, NOTI_WRITE_DATE, NOTI_HIT
+		                FROM 		MU_NOTICE
+						WHERE		(NOTI_SUBJECT LIKE '%' || #{searchText} || '%') OR 
+									(NOTI_CONTENT LIKE '%' || #{searchText} || '%') AND
+									(NOTI_DEL_STATUS IS NULL)
+		                ORDER BY 	NOTI_IDX DESC
+		                ) N
+        		) NN
+		WHERE 	RN BETWEEN #{begin} AND #{end}
+	</select>
+
+
+<!-- (U) 조회수 1씩 증가 -->
+	<update id="hit" parameterType="int">
+		UPDATE 	MU_NOTICE
+		SET 	NOTI_HIT = NOTI_HIT + 1 
+		WHERE 	NOTI_IDX = #{noti_idx}
+	</update>
+
+
+<!-- (U) 관리자가 기존글 수정하기 -->
+	<update id="update" parameterType="NoticeVO">
+		UPDATE 	MU_NOTICE
+		SET 	NOTI_SUBJECT = #{noti_subject},
+				NOTI_CONTENT = #{noti_content} 
+		WHERE 	NOTI_IDX = #{noti_idx}
+	</update>
+
+
+<!-- (D) 관리자가 기존글 삭제하기 -->
+	<update id="delete" parameterType="int">
+		UPDATE 	MU_NOTICE
+		SET 	NOTI_DEL_STATUS = 'DEL'
+		WHERE 	NOTI_IDX = #{noti_idx}
+	</update>
+	
+	
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FAQ">
+
+<!-- News >> FAQ 맵퍼입니다(담영) -->
+
+
+<!-- (R) 전체 질문 검색 -->
+	<select id="all" resultType="FAQVO">
+		SELECT 	FAQ_IDX, FAQ_CATEGORY, FAQ_QUESTION, FAQ_ANSWER, FAQ_DEL_STATUS
+		FROM 	MU_FAQ
+		WHERE 	FAQ_DEL_STATUS IS NULL
+	</select>
+
+<!-- (R) 카테고리 관람 검색 -->
+	<select id="cateExhib" resultType="FAQVO">
+		SELECT 	FAQ_IDX, FAQ_CATEGORY, FAQ_QUESTION, FAQ_ANSWER, FAQ_DEL_STATUS
+		FROM 	MU_FAQ
+		WHERE 	FAQ_DEL_STATUS IS NULL AND FAQ_CATEGORY = '관람'
+	</select>
+
+<!-- (R) 카테고리 교통 검색 -->
+	<select id="cateTrans" resultType="FAQVO">
+		SELECT 	FAQ_IDX, FAQ_CATEGORY, FAQ_QUESTION, FAQ_ANSWER, FAQ_DEL_STATUS
+		FROM 	MU_FAQ
+		WHERE 	FAQ_DEL_STATUS IS NULL AND FAQ_CATEGORY = '교통'
+	</select>
+
+	
+</mapper>
