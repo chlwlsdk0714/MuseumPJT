@@ -16,25 +16,37 @@
 
 ## How to use? & ## Screenshots  
 ##### 1.main.jsp에서 서버를 작동시킨다.   
-2.상단 네비바에 있는 Exhibition 가서 뮤지엄 소개를 클릭한다.   
-![스크린샷(4)](https://user-images.githubusercontent.com/73566078/110464285-4d3c6780-8116-11eb-9dee-594d2003f2b0.png)   
-3.뮤지엄 소개 페이지에서 현재 전시 리스트를 볼 수 있다.   
-![스크린샷(5)](https://user-images.githubusercontent.com/73566078/110464291-4e6d9480-8116-11eb-8971-1acb4c989ae6.png)   
-4.같은 페이지 하단으로 가면 연도별 브로슈어를 다운받을 수 있다.   
-![스크린샷(6)](https://user-images.githubusercontent.com/73566078/110464296-4f9ec180-8116-11eb-8cbe-5ef5e4a5d41c.png)   
-5.다시 네비바에서 캘린더를 클릭한다.   
-![스크린샷(7)](https://user-images.githubusercontent.com/73566078/110464305-5299b200-8116-11eb-8785-5be1e823a0d4.png)   
-6.캘린더 페이지에선 사용자가 선택한 날짜에 해당하는 전시 리스트를 볼 수 있다.
-7.우측 '현재 전시 더보기'를 클릭하면 전시 페이지로 이동해 더 많은 현재 전시 목록을 볼 수 있다.      
+##### 2.상단 네비바에 있는 Exhibition 가서 뮤지엄 소개를 클릭한다.   
+![ 스크린샷(4)](https://user-images.githubusercontent.com/73566078/110464285-4d3c6780-8116-11eb-9dee-594d2003f2b0.png) 
+
+
+##### 3.뮤지엄 소개 페이지에서 현재 전시 리스트를 볼 수 있다.   
+![스크린샷(5)](https://user-images.githubusercontent.com/73566078/110464291-4e6d9480-8116-11eb-8971-1acb4c989ae6.png)  
+
+
+ ##### 4.같은 페이지 하단으로 가면 연도별 브로슈어를 다운받을 수 있다.   
+![스크린샷(6)](https://user-images.githubusercontent.com/73566078/110464296-4f9ec180-8116-11eb-8cbe-5ef5e4a5d41c.png) 
+
+
+##### 5.다시 네비바에서 캘린더를 클릭한다.   
+![스크린샷(7)](https://user-images.githubusercontent.com/73566078/110464305-5299b200-8116-11eb-8785-5be1e823a0d4.png)  
+
+
+##### 6.캘린더 페이지에선 사용자가 선택한 날짜에 해당하는 전시 리스트를 볼 수 있다.
+##### 7.우측 '현재 전시 더보기'를 클릭하면 전시 페이지로 이동해 더 많은 현재 전시 목록을 볼 수 있다.      
 ![스크린샷(8)](https://user-images.githubusercontent.com/73566078/110464310-54637580-8116-11eb-831d-da8c38b6f9f4.png) 
 
-8. 검색어에 해당하는 전시 목록을 조회할 수 있다.
+
+##### 8. 검색어에 해당하는 전시 목록을 조회할 수 있다.
 ![스크린샷(10)](https://user-images.githubusercontent.com/73566078/110464316-56c5cf80-8116-11eb-85ac-d1c67efab1f3.png)
 ![스크린샷(11)](https://user-images.githubusercontent.com/73566078/110464326-59282980-8116-11eb-98e7-35722bea0e13.png)   
-9.네비바 Exhibition아래 전시페이지로 가면 현재 전시와 함께 예정전시, 연도별 과거전시 목록을 볼 수 있다.   
+
+
+##### 9.네비바 Exhibition아래 전시페이지로 가면 현재 전시와 함께 예정전시, 연도별 과거전시 목록을 볼 수 있다.   
 ![스크린샷(13)](https://user-images.githubusercontent.com/73566078/110465146-672a7a00-8117-11eb-9afc-e7a4dd7f7a92.png)
 
-10.전시리스트를 볼 수 있는 페이지에서 썸네일을 누르면 각 전시에 해당하는 상세정보를 볼 수 있다.   
+
+##### 10.전시리스트를 볼 수 있는 페이지에서 썸네일을 누르면 각 전시에 해당하는 상세정보를 볼 수 있다.   
 ![스크린샷(12)](https://user-images.githubusercontent.com/73566078/110464336-5c231a00-8116-11eb-8278-7e016b26b48c.png)
 
 
