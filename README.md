@@ -23,7 +23,7 @@ Include logo/demo screenshot etc.
 
 ## Code Example
 * ajax를 활용하여 전시리스트 조회하기
-<pre><code>
+
 <script>
 	$(function(){
 		/* $("#nowBtn").click(function(){
@@ -265,7 +265,6 @@ Include logo/demo screenshot etc.
 	
 </body>
 </html>
-</code></pre>
 
 * 전시리스트 페이징처리로 화면에 출력하기
 <pre><code>
