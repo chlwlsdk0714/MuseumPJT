@@ -1,6 +1,3 @@
-# MuseumPJT
-# CallBackMuseum_webProject
-
 ## Project title
  CallBackMuseum
 
@@ -17,37 +14,173 @@
 7. 공지를 통해 새소식 알리기   
 8. 이용자가 웹사이트를 통해 문의할 수 있음(소통창구)   
 
-## Build status
-Build status of continus integration i.e. travis, appveyor etc. Ex. -
-
-Build StatusWindows Build Status
-
-## Code style
-If you're using any code style like xo, standard etc. That will help others while contributing to your project. Ex. -
-
-js-standard-style
-
 ## Screenshots
 Include logo/demo screenshot etc.
 
-## Tech/framework used
-Ex. -
-
-Built with
-
-Electron
-
 ## Features
-What makes your project stand out?
+* ajax를 활용하여 전시리스트 조회하기
+* 전시리스트 페이징처리로 화면에 출력하기
 
 ## Code Example
-Show what the library does as concisely as possible, developers should be able to figure out how your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+* ajax를 활용하여 전시리스트 조회하기
 
-## Installation
-Provide step by step series of examples and explanations about how to get a development env running.
+* 전시리스트 페이징처리로 화면에 출력하기
+<pre><code>
+@WebServlet("/exhibition/period")
+public class PeriodController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("doGet 시작");
+		
+		int totalRecord = ExhibitionDAO.getTotalRecord();
+		int nowPage = 1;
+		
+		ExhibPagingVO pvo = new ExhibPagingVO();
+		pvo.setNumPerPage(4);
+		pvo.setPagePerBlock(10);
+		pvo.setPaging(nowPage, totalRecord);
+		int totalPage = pvo.getTotalPage();
+		
+		List<ExhibVO> list = null;
+		List<List<ExhibVO>> listArray = new ArrayList<>();
+		
+		for (int i = nowPage; i <= totalPage; i++) {
+			Map<String, Integer> map = new HashMap<>();
+			pvo.setPaging(i, totalRecord);
+			map.put("begin", pvo.getBegin());
+			map.put("end", pvo.getEnd());
+			list = ExhibitionDAO.getPaging(map);
+			if (list != null) {
+				listArray.add(list);				
+			}
+		}
+		
+		System.out.println();
+		
+		request.setAttribute("pvo", pvo);
+		request.setAttribute("listArray", listArray);
+			
+				
+		//응답페이지로 위임처리
+		request.getRequestDispatcher("exhibYear.jsp").forward(request, response);
+		System.out.println("doGet 끝");
+	}
+	
+}
+</code></pre>
+
+-페이징 처리를 위한 VO
+<pre><code>
+package com.bc.model.vo;
+
+public class ExhibPagingVO {
+
+	// 기본 세팅값 (변하지 않음)
+	private int numPerPage = 5; //하나의 페이지에 표시할 게시글 수
+	private int pagePerBlock = 5; //블록당 표시하는 페이지 갯수
+
+	// 유동적인 필드 
+	private int nowPage = 1; //현재페이지, 디폴트값이 1이다.
+	private int nowBlock = 1; //현재 블록(페이지 담는 단위), 디폴트값 1
+	
+	private int totalRecord = 0; //총 게시물 갯수(원본 게시글 수)
+	private int totalPage = 0; //전체 페이지 갯수
+	private int totalBlock = 0; //전체 블록 갯수
+	
+	private int begin = 0; //현재 페이지상의 시작 글번호 e.g) 1, 4, 7, ...
+	private int end = 0; //현재 페이지상의 마지막 글번호 eg) 3, 6, 9, ...
+	
+	private int beginPage = 0; //현재 블록의 시작 페이지 번호 . 그니까 총 글의 개수가 만약 13개다-> 페이지 번호는 1부터 5까지
+	private int endPage = 0; //현재 블록의 끝 페이지 번호 
+	
+	
+	public ExhibPagingVO() { }
+	
+	// 현재 페이지와 총 게시물 개수를 파라미터로 가지는 생성자를 호출하면 모든 값이 한 번에 세팅되도록!
+	public ExhibPagingVO(int nowPage, int totalRecord) {
+		// nowPage
+		this.nowPage = nowPage;
+		
+		// nowBlock
+		nowBlock = (nowPage + pagePerBlock - 1) / pagePerBlock;
+		
+		// totalRecord
+		this.totalRecord = totalRecord;
+		
+		// totalPage
+		totalPage = totalRecord / numPerPage;
+		if (totalRecord % numPerPage > 0) totalPage++;
+		
+		// totalBlock
+		totalBlock = totalPage / pagePerBlock;
+		if (totalPage % pagePerBlock > 0) totalBlock++;
+		
+		// begin
+		begin = numPerPage * (nowPage - 1) + 1;
+		
+		// end
+		end = begin + numPerPage - 1;
+		
+		
+		// beginPage
+		beginPage = pagePerBlock * (nowBlock - 1) + 1;
+		
+		// endPage
+		endPage = beginPage + pagePerBlock - 1;
+		if (endPage > totalPage) {
+			endPage = totalPage;
+		}
+	}
+	
+	public void setPaging(int nowPage, int totalRecord) {
+		// nowPage
+		this.nowPage = nowPage;
+		
+		// nowBlock
+		nowBlock = (nowPage + pagePerBlock - 1) / pagePerBlock;
+		
+		// totalRecord
+		this.totalRecord = totalRecord;
+		
+		// totalPage
+		totalPage = totalRecord / numPerPage;
+		if (totalRecord % numPerPage > 0) totalPage++;
+		
+		// totalBlock
+		totalBlock = totalPage / pagePerBlock;
+		if (totalPage % pagePerBlock > 0) totalBlock++;
+		
+		// begin
+		begin = numPerPage * (nowPage - 1) + 1;
+		
+		// end
+		end = begin + numPerPage - 1;
+		
+		
+		// beginPage
+		beginPage = pagePerBlock * (nowBlock - 1) + 1;
+		
+		// endPage
+		endPage = beginPage + pagePerBlock - 1;
+		if (endPage > totalPage) {
+			endPage = totalPage;
+		}
+	}
+</code></pre>
+
 
 ## How to use?
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
+1.main.jsp에서 서버를 작동시킨다.
+2.상단 네비바에 있는 Exhibition 가서 뮤지엄 소개를 클릭한다.
+3.뮤지엄 소개 페이지에서 현재 전시 리스트를 볼 수 있다.
+4.같은 페이지 하단으로 가면 연도별 브로슈어를 다운받을 수 있다.
+5.다시 네비바에서 캘린더를 클릭한다.
+6.캘린더 페이지에선 사용자가 선택한 날짜에 해당하는 전시 리스트를 볼 수 있다.
+7.우측 '현재 전시 더보기'를 클릭하면 전시 페이지로 이동해 더 많은 현재 전시 목록을 볼 수 있다.
+8.네비바 Exhibition아래 전시페이지로 가면 현재 전시와 함께 예정전시, 연도별 과거전시 목록을 볼 수 있다.
+9.전시리스트를 볼 수 있는 페이지에서 썸네일을 누르면 각 전시에 해당하는 상세정보를 볼 수 있다.
 
 
 
