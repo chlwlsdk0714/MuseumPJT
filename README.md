@@ -14,7 +14,7 @@
 7. 공지를 통해 새소식 알리기   
 8. 이용자가 웹사이트를 통해 문의할 수 있음(소통창구)   
 
-## How to use? & ## Screenshots  
+## How to use? & Screenshots  
 ##### 1.main.jsp에서 서버를 작동시킨다.   
 ##### 2.상단 네비바에 있는 Exhibition 가서 뮤지엄 소개를 클릭한다.   
 ![ 스크린샷(4)](https://user-images.githubusercontent.com/73566078/110464285-4d3c6780-8116-11eb-9dee-594d2003f2b0.png) 
