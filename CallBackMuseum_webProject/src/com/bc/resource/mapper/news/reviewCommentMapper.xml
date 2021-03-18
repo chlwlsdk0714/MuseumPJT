@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RCOM">
+
+<!-- News >> 후기게시판에 달릴 댓글(ReviewComment) 맵퍼입니다(담영) -->
+
+
+<!-- (C) 댓글 등록하기 -->
+	<insert id="insert" parameterType="ReviewCommentVO">
+		INSERT INTO		MU_REV_COMMENT
+					(	RCOM_IDX,
+						RCOM_WRITER, 
+						RCOM_CONTENT, 
+						RCOM_WRITE_DATE,
+						RCOM_IP,
+						REV_IDX
+					)
+		VALUES 
+					(	MU_RCOM_SEQ.NEXTVAL,
+					 	#{rcom_writer},
+					    #{rcom_content},
+					    SYSDATE,
+					    #{rcom_ip},
+					    #{rev_idx}
+					)
+	</insert>
+
+
+<!-- (R) 특정 게시글에 달린 해당 댓글 전부 검색 (이름과 함께)-->
+	<select id="commentList" resultType="ReviewCommentVO" parameterType="int">
+		SELECT		RC.*, M.MEM_NAME MEM_NAME
+		FROM		MU_REV_COMMENT RC
+		LEFT JOIN	MU_MEMBER M
+		ON			RC.RCOM_WRITER = M.MEM_ID
+		WHERE		RC.REV_IDX = #{rev_idx}
+		ORDER BY	RC.RCOM_WRITE_DATE
+	</select>
+
+
+<!-- (R) idx 번호로 댓글 찾기 -->
+	<select id="one" resultType="ReviewCommentVO" parameterType="int">
+		SELECT	*
+		FROM 	MU_REV_COMMENT
+		WHERE 	RCOM_IDX = #{rcom_idx}
+	</select>
+
+
+<!-- (U) 댓글 수정 -->
+	<update id="update" parameterType="ReviewCommentVO">
+		UPDATE	MU_REV_COMMENT
+		SET		RCOM_CONTENT = #{rcom_content}
+		WHERE	RCOM_IDX = #{rcom_idx}
+	</update>
+
+
+<!-- (D) 댓글 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE
+		FROM	MU_REV_COMMENT
+		WHERE	RCOM_IDX = #{rcom_idx}
+	</delete>
+	
+	
+	
+	
+</mapper>

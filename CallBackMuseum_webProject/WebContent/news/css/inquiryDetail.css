@@ -1,0 +1,188 @@
+body {
+	margin: 0;
+}
+.title-wrap {
+	display: flex;
+	justify-content: center;
+}
+
+.title {
+	margin-top: 1.225em;
+	font-size: 2.5em;
+	font-weight: 500;
+	color: #222222;
+	border-top: 1px solid #606060;
+	padding: 0.35em 0;
+}
+.line-nav-wrap {
+	margin-top: 5em;
+	display: flex;
+	justify-content: center;
+}
+.line-nav {
+	/* background-color: beige; */
+	border-bottom: 1px solid #b1b1b1;
+	width: 85vw;
+}
+.line-nav ul {
+	display: flex;
+	padding: 0;
+	margin: 0;
+}
+.line-nav li {
+	list-style: none;
+	padding: 0.7em 0;
+	margin: 0 2em 0.04em 0.1em;
+	font-size: 0.8em;
+	font-weight: 500;
+	color: #606060;
+	/* border-bottom: 3px solid #db0b2e; */
+}
+.line-nav li:hover {
+	cursor: pointer;
+}
+.now {
+	border-bottom: 3px solid #db0b2e;
+}
+li.now {
+	color: #1f1f1f;
+	font-weight: 600;
+}
+
+
+.table-wrap {
+	display: flex;
+	justify-content: center;
+	margin-top: 3em;
+}
+.insert-table {
+	border-collapse: collapse;
+	width: 80vw;
+	margin-bottom: 6em;
+}
+.insert-table td,
+.insert-table th {
+	color: #333333;
+	font-size: 0.9em;
+	padding: 0.9em 1.1em;
+}
+.insert-table .underline {
+	color: #333333;
+	font-size: 16px;
+	padding: 0.9em 1.1em;
+}
+
+.to-list a{
+	font-size: 1em;
+	padding-bottom: 0.8em;
+	float: right;
+	color: #222;
+}
+
+.insert-table thead .underline {
+	font-size: 0.8em;
+	padding-bottom: 0.8em;
+	border-bottom: 2px solid #222222;
+}
+
+.insert-table tbody td,
+.insert-table tbody th {
+	border-bottom: 1px solid #b1b1b1;
+}
+.insert-table th {
+	width: 180px;
+	background-color: #eeeeee;
+	border-top: 1px solid #222222;
+}
+.admin-textarea {
+	heihgt: 300px;
+	backgound-color: blue;
+	white-space: pre-wrap;
+	line-height: 1.6;
+}
+table{
+	border-collapse: collapse;
+}
+
+.table2 td, .table3 td{
+	height: 30px;
+	width: 650px;
+	border-bottom: 1px solid #eeeeee;
+}
+.table2 th, .table3 th{
+	width: 150px;
+	background-color: #eeeeee;
+}
+.table2, .table3{
+	margin-bottom: 50px;
+}
+select {
+	width: 190px;
+	height: 2.4em;
+}
+.input-subject {
+	width: 99%;
+	height: 1.5em;
+	padding: 0.5em 0 0.5em 1em;
+}
+textarea {
+	width: 99%;
+	overflow: hidden;
+	padding: 0.5em 0 0.5em 1em;
+}
+
+td.space {
+	height: 180px;
+	white-space: pre-wrap;
+}
+.admin-textarea {
+	height: 160px;
+}
+.insert-table tfoot th {
+ 	text-align: center; 
+	padding: 1.5em;
+	border-bottom: 1px solid #b1b1b1;
+}
+.insert-table tfoot td {
+	text-align: left;
+	padding: 1.5em;
+	border-bottom: 1px solid #b1b1b1;
+}
+.insert-table tfoot .for-center {
+	text-align: center;
+}
+#inqComment {
+	font-size: 0.8em;
+	padding-bottom: 0.8em;
+	border-bottom: 2px solid #222222;
+	border-top: 2px solid white;
+}
+
+.insert-table tfoot input {
+	padding: 1.2em 3em;
+	background-color: #333333;
+	color: #f5f5f5;
+}
+.insert-table tfoot input:hover {
+	background-color: #131313;
+	cursor: pointer;
+}
+.insert-table input::placeholder {
+	color: #b1b1b1;
+	font-size: 0.87em;
+}
+#adminbtn, #deletebtn {
+	border: 2px solid #333;
+	background-color: #333;
+	border-radius: 2px;
+	color: white;
+	padding: 10px;
+	display: inline-block;
+}
+#inq-comment {
+	border-top: none;
+}
+#btn-td {
+	text-align: center;
+	border-bottom: none;
+}

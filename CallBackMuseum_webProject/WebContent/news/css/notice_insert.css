@@ -1,0 +1,124 @@
+body {
+	margin: 0;
+}
+.title-wrap {
+	display: flex;
+	justify-content: center;
+}
+.title {
+	margin-top: 1.225em;
+	font-size: 2.5em;
+	font-weight: 500;
+	color: #222222;
+	border-top: 1px solid #606060;
+	padding: 0.35em 0;
+}
+.line-nav-wrap {
+	margin-top: 5em;
+	display: flex;
+	justify-content: center;
+}
+.line-nav {
+	/* background-color: beige; */
+	border-bottom: 1px solid #b1b1b1;
+	width: 85vw;
+}
+.line-nav ul {
+	display: flex;
+	padding: 0;
+	margin: 0;
+}
+.line-nav li {
+	list-style: none;
+	padding: 0.7em 0;
+	margin: 0 2em 0.04em 0.1em;
+	font-size: 0.8em;
+	font-weight: 500;
+	color: #606060;
+	/* border-bottom: 3px solid #db0b2e; */
+}
+.line-nav li:hover {
+	cursor: pointer;
+}
+.now {
+	border-bottom: 3px solid #db0b2e;
+}
+li.now {
+	color: #1f1f1f;
+	font-weight: 600;
+}
+
+
+.table-wrap {
+	display: flex;
+	justify-content: center;
+	margin-top: 3em;
+}
+.insert-table {
+	border-collapse: collapse;
+	width: 1000px;
+	margin-bottom: 6em;
+}
+.insert-table td,
+.insert-table th {
+	color: #333333;
+	font-size: 0.9em;
+	padding: 0.9em 1.1em;
+}
+.insert-table thead td {
+	font-size: 0.8em;
+	padding-bottom: 0.8em;
+	padding-left: 0.1em;
+	border-bottom: 2px solid #222222;
+}
+.insert-table tbody td,
+.insert-table tbody th {
+	border-bottom: 1px solid #b1b1b1;
+}
+.insert-table th {
+	width: 180px;
+	background-color: #eeeeee;
+}
+select {
+	width: 190px;
+	height: 2.4em;
+}
+.input-subject {
+	width: 99%;
+	height: 1.5em;
+	padding: 0.5em 0 0.5em 1em;
+}
+textarea {
+	width: 99%;
+	overflow: hidden;
+	padding: 0.5em 0 0.5em 1em;
+}
+.insert-table tfoot td {
+	text-align: center;
+	padding: 2em;
+}
+.insert-table tfoot input {
+	border: none;
+	padding: 1.2em 3em;
+	margin-right: 0.6em;
+	background-color: #333333;
+	color: #f5f5f5;
+}
+button.gray-btn {
+	border: none;
+	padding: 1.2em 3em;
+	color: #f5f5f5;
+	background-color: #b1b1b1;
+}
+button.gray-btn:hover {
+	cursor: pointer;
+	background-color: #a1a1a1;
+}
+.insert-table tfoot input:hover {
+	background-color: #131313;
+	cursor: pointer;
+}
+.insert-table input::placeholder {
+	color: #b1b1b1;
+	font-size: 0.87em;
+}

@@ -1,0 +1,47 @@
+    .divTitle {
+    	display: flex; 
+    	padding-left:30px; 
+    	padding-top:20px;
+    }
+    .title{
+        border-top: 1px solid #303030;
+        padding-top: 0.225em;
+    }
+    hr {margin-left: 30px; }
+    .visit {
+        padding-left: 30px;
+        float: left;
+        }
+    .info {height:530px;}  
+    .download {
+    	padding-left: 30px;
+    } 
+    .br_year {display: inline;}
+    a {text-decoration: none;}
+    .download > p { display: inline;}
+    .brochure {height: 200px; }
+    
+    /*----------------테이블 관련-------------------*/
+    
+    .now-table {
+        border-collapse: collapse;
+        width: 50%;
+        margin:auto;
+    }
+    .now-table td {
+        width: 300px;
+        padding: 10px 50px;
+    }
+    .td-subject {
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+    .td-img {
+        text-align: center;
+    }
+    .td-img:hover, .td-subject:hover {
+        cursor: pointer;
+    }
+    .td-date {
+        border-top: 2px solid #606060;
+    }

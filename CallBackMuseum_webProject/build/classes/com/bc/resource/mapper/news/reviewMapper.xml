@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="REVIEW">
+
+<!-- News >> 관람 후기(REVIEW) 맵퍼입니다(담영) -->
+
+
+<!-- (C) 회원이 새글 쓰기 -->
+	<insert id="insert" parameterType="ReviewVO">
+		INSERT INTO	MU_REVIEW
+					(   REV_IDX,
+					    REV_CATEGORY,
+					    REV_WRITER,
+					    REV_SUBJECT,
+					    REV_CONTENT,
+					    REV_WRITE_DATE,
+					    REV_FILE_NAME,
+					    REV_ORI_NAME,
+					    REV_HIT
+					)
+		VALUES 
+					(   MU_REV_SEQ.NEXTVAL,
+					    #{rev_category},
+					    #{rev_writer},
+					    #{rev_subject},
+					    #{rev_content},
+					    SYSDATE,
+					    #{rev_file_name},
+					    #{rev_ori_name},
+					    0
+					)
+	</insert>
+
+
+<!-- (R) 최근 게시한 글 한 개 검색 -->
+	<select id="new" resultType="ReviewVO">
+		SELECT	RR.*
+		FROM 	(
+				SELECT	ROWNUM RN, R.*
+				FROM	(
+						SELECT		*
+						FROM 		MU_REVIEW
+						WHERE 		REV_DEL_STATUS IS NULL
+						ORDER BY	REV_WRITE_DATE DESC
+						) R
+				) RR
+		WHERE 	RN = 1	
+	</select>
+
+
+<!-- (R) 전체 게시글 수 검색 -->
+	<select id="totalRecord" resultType="int">
+		SELECT 		COUNT(REV_IDX)
+		FROM 		MU_REVIEW
+		WHERE 		REV_DEL_STATUS IS NULL
+		ORDER BY 	REV_IDX DESC
+	</select>
+
+
+<!-- (R) 페이징 처리하여 게시글 검색 (댓글 개수와 함께)-->
+	<select id="list" resultType="ReviewVO" parameterType="Map">
+		SELECT 	RRR.*
+		FROM	(
+				SELECT ROWNUM RN, RR.* 
+				FROM	(
+						SELECT		R.REV_IDX REV_IDX, REV_CATEGORY, REV_SUBJECT,
+									C.CNT COMM_CNT, REV_WRITER, REV_WRITE_DATE, 
+									REV_HIT, MEM_NAME
+						FROM 		MU_REVIEW R
+						LEFT JOIN	(
+									SELECT REV_IDX, COUNT(RCOM_IDX) CNT
+									FROM MU_REV_COMMENT
+									GROUP BY REV_IDX
+									) C
+						ON 			R.REV_IDX = C.REV_IDX
+                        LEFT JOIN	MU_MEMBER M
+                        ON          (R.REV_WRITER = M.MEM_ID)
+                        WHERE		R.REV_DEL_STATUS IS NULL
+						ORDER BY 	R.REV_WRITE_DATE DESC
+						) RR
+				) RRR
+		WHERE 	RN BETWEEN #{begin} AND #{end}
+	</select>
+
+
+<!-- (R) 게시글 1개 상세보기 -->
+	<select id="one" resultType="ReviewVO" parameterType="int">
+		SELECT 	M.MEM_NAME MEM_NAME, R.*
+		FROM 	MU_REVIEW R
+		JOIN	MU_MEMBER M
+		ON		R.REV_WRITER = M.MEM_ID
+		WHERE 	REV_IDX = #{rev_idx}
+	</select>
+
+
+<!-- (U) 조회수 1씩 증가 -->
+	<update id="hit" parameterType="int">
+		UPDATE 	MU_REVIEW
+		SET 	REV_HIT = REV_HIT + 1 
+		WHERE 	REV_IDX = #{rev_idx}
+	</update>
+
+
+<!-- (U) 기존글 수정하기 -->
+	<update id="update" parameterType="ReviewVO">
+		UPDATE 	MU_REVIEW
+		SET 	REV_CATEGORY = #{rev_category},
+				REV_SUBJECT = #{rev_subject},
+				REV_FILE_NAME = #{rev_file_name},
+				REV_ORI_NAME = #{rev_ori_name},
+				REV_CONTENT = #{rev_content} 
+		WHERE 	REV_IDX = #{rev_idx}
+	</update>
+
+
+<!-- (D) 삭제하기 -->
+	<update id="delete" parameterType="int">
+		UPDATE 	MU_REVIEW
+		SET 	REV_DEL_STATUS = 'DEL'
+		WHERE 	REV_IDX = #{rev_idx}
+	</update>	
+	
+	
+	
+	
+</mapper>

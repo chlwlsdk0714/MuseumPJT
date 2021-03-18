@@ -1,0 +1,89 @@
+#container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#hhh1 {
+	display: flex;
+	justify-content: center;
+}
+
+#hh1 {
+	margin-top: 1.225em;
+	font-size: 2.5em;
+	font-weight: 500;
+	color: #222222;
+	border-top: 1px solid #606060;
+	padding: 0.35em 0;
+	margin-bottom: 30px;
+}
+
+h5 {
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+.logbtn, .joinbtn {
+	width: 290px;
+	height: 51px;
+	border: none;
+	background-color: #db0b2e;
+	padding: .8em .5em;
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+	display: inline-block;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.logbtn {
+	margin-top: 30px;
+}
+
+.joinbtn {
+	background-color: gray;
+	margin-bottom: 60px;
+}
+
+.input_wrap {
+	position: relative;
+}
+
+.inputform {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 20px 0;
+}
+
+input[type=text], input[type=password] {
+	width: 480px;
+	height: 40px;
+	color: #aaa;
+	padding: 40px 20px;
+	margin: 8px 0;
+	font-size: 15px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+#showPwd {
+	box-sizing: border-box;
+	display: inline-block;
+	/*padding-left: 10px;*/
+	width: 30px;
+	color: gray;
+	text-align: center;
+	user-select: none;
+	position: absolute;
+	top: 40px;
+	right: 20px;
+}
+/* #idSaveCheck {
+	margin: 20px 0 50px 0;
+} */

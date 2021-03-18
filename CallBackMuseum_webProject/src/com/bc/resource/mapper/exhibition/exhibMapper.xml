@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MUSEUM"> 
+
+ 	<!-- 전시 리스트 조회 -->
+ 	<select id="list" resultType="com.bc.model.vo.ExhibVO">
+		SELECT * FROM MU_EXHIBITION
+		ORDER BY exhib_period_start DESC 
+ 	</select>
+ 	
+ 	<!-- 썸네일 클릭시 상세페이지로 이동  -->
+ 	<select id="detail" resultType="com.bc.model.vo.ExhibVO" parameterType="int">
+ 		SELECT	EXHIB_IDX,
+				EXHIB_SUBJECT,
+				EXHIB_PERIOD_START,
+				EXHIB_PERIOD_END,
+				EXHIB_VENUE,
+				REPLACE(EXHIB_ARTIST, 'null', '') as EXHIB_ARTIST,
+				REPLACE(EXHIB_ARTWORKS_CNT, 'null', '') as EXHIB_ARTWORKS_CNT,
+				REPLACE(EXHIB_ADMISSION, 'null', '') as EXHIB_ADMISSION,
+				REPLACE(EXHIB_ORGANIZATION, 'null', '') as EXHIB_ORGANIZATION,
+				EXHIB_CONTENT,
+				EXHIB_THUMB_PATH
+		FROM MU_EXHIBITION
+		WHERE EXHIB_IDX = #{exhib_idx}
+ 	</select> 
+ 	
+ 	<!-- 전시명으로 검색 -->
+ 	<select id="search" resultType="com.bc.model.vo.ExhibVO" parameterType="String">
+ 		SELECT * FROM MU_EXHIBITION
+		WHERE EXHIB_SUBJECT LIKE '%'||#{exhib_subject}||'%'
+ 	</select>
+ 	
+ 	<!-- 전체 게시글 수 구하기 -->
+ 	<select id="totalRecord" resultType="int">
+ 		SELECT COUNT(EXHIB_IDX) 
+		FROM MU_EXHIBITION
+		ORDER BY EXHIB_PERIOD_START DESC
+ 	</select>
+ 	
+ 	
+ 	<!-- 페이징처리해서 게시글 불러오기 //현재 전시 -->
+ 	<select id="paging" resultType="com.bc.model.vo.ExhibVO" parameterType="Map">
+ 		SELECT 	EE.*
+		FROM 	(
+    			SELECT 	ROWNUM RN, E.*
+    			FROM 	(
+        				SELECT *
+        				FROM MU_EXHIBITION
+        				WHERE EXHIB_PERIOD_START <![CDATA[ <= ]]> SYSDATE AND exhib_period_end &gt;= SYSDATE
+						ORDER BY EXHIB_PERIOD_START DESC
+        				) E
+    			) EE
+		WHERE RN BETWEEN #{begin} AND #{end}
+ 	</select>
+ 	
+ 	<!-- 전시 정보 insert -->
+ 	<insert id="insert" parameterType="com.bc.model.vo.ExhibVO">
+ 		INSERT INTO MU_EXHIBITION
+			(EXHIB_IDX, EXHIB_SUBJECT, EXHIB_PERIOD_START,EXHIB_PERIOD_END,
+    		EXHIB_VENUE, EXHIB_ARTIST, EXHIB_ARTWORKS_CNT, EXHIB_ADMISSION, 
+    		EXHIB_ORGANIZATION, EXHIB_CONTENT,EXHIB_THUMB_PATH )
+		VALUES (EXHIB_SEQ.NEXTVAL, #{exhib_subject}, #{exhib_period_start}, #{exhib_period_end},
+    			#{exhib_venue}, #{exhib_artist}, #{exhib_artworks_cnt}, #{exhib_admission} , 
+    			#{exhib_organization}, #{exhib_content}, #{exhib_thumb_path})
+ 	</insert>
+ 	
+ 	<!-- 입력한 정보의 idx 바로 가져오기 -->
+ 	<select id="currval" resultType="int">
+ 		SELECT EXHIB_SEQ.CURRVAL FROM DUAL
+ 	</select>
+ 	
+ 	<!-- 전시 정보 수정 -->
+ 	<update id="update" parameterType="com.bc.model.vo.ExhibVO">
+ 		UPDATE MU_EXHIBITION
+			SET EXHIB_SUBJECT = #{exhib_subject}, 
+			    EXHIB_PERIOD_START =  #{exhib_period_start},
+			    EXHIB_PERIOD_END = #{exhib_period_end},
+			    EXHIB_VENUE = #{exhib_venue}, 
+			    EXHIB_ARTIST = #{exhib_artist}, 
+			    EXHIB_ARTWORKS_CNT = #{exhib_artworks_cnt}, 
+			    EXHIB_ADMISSION = #{exhib_admission} ,
+			    EXHIB_ORGANIZATION = #{exhib_organization},
+			    EXHIB_CONTENT = #{exhib_content},
+			    EXHIB_THUMB_PATH = #{exhib_thumb_path}
+			WHERE EXHIB_IDX = #{exhib_idx}
+ 	</update>
+ 
+ 	<!-- 전시 정보 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM MU_EXHIBITION WHERE EXHIB_IDX = #{exhib_idx}
+	</delete>
+
+	<!-- 캘린더 현재 전시 4개 보여주기 -->
+	<select id="calendar" resultType="com.bc.model.vo.ExhibVO">
+	SELECT * 
+	FROM MU_EXHIBITION 
+	WHERE EXHIB_PERIOD_START <![CDATA[  <=  ]]> SYSDATE 
+		AND EXHIB_PERIOD_END <![CDATA[  >  ]]> SYSDATE 
+		AND ROWNUM <![CDATA[  <  ]]> 5
+	</select>	
+	
+	<!-- 사용자가 선택한 시작,끝날짜 사이에 있는 전시 리스트 보여주기 -->
+	<select id="calendarResult" resultType="com.bc.model.vo.ExhibVO" parameterType="Map">
+	SELECT * 
+	FROM MU_EXHIBITION
+	WHERE ((EXHIB_PERIOD_START <![CDATA[  <=  ]]> #{exhib_period_start} ) AND (EXHIB_PERIOD_END BETWEEN #{exhib_period_start} AND #{exhib_period_end}))
+		OR ((EXHIB_PERIOD_START BETWEEN #{exhib_period_start} AND #{exhib_period_end}) AND EXHIB_PERIOD_END  <![CDATA[  >  ]]> #{exhib_period_end})
+		OR ((EXHIB_PERIOD_START BETWEEN #{exhib_period_start} AND #{exhib_period_end}) AND (EXHIB_PERIOD_END BETWEEN #{exhib_period_start} AND #{exhib_period_end}))
+		OR (EXHIB_PERIOD_START <![CDATA[  <=  ]]> #{exhib_period_start} AND  EXHIB_PERIOD_END <![CDATA[  >=  ]]> #{exhib_period_end})
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

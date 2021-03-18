@@ -1,0 +1,173 @@
+body {
+    margin: 0;
+}
+.title-wrap {
+    display: flex;
+    justify-content: center;
+}
+.title {
+    margin-top: 1.225em;
+    font-size: 2.5em;
+    font-weight: 500;
+    color: #222222;
+    border-top: 1px solid #606060;
+    padding: 0.35em 0;
+}
+.search-box {
+    display: flex;
+    justify-content: center;
+}
+#searchText {
+    width: 10.5em;
+    height: 2.3em;
+    line-height: 2.3em;
+    padding: 0.5em 1em;
+    margin: 0.1em;
+    font-size: 1em;
+    font-weight: 400;
+    border: none;
+    color: #606060;
+}
+#searchText::placeholder {
+    color: #b1b1b1
+}
+.search-box i {
+    color: #7c7c7c;
+}
+.search-box button {
+    background-color: transparent;
+    border: none;
+    font-size: 0.9em;
+    padding: 1.2em 1.2em;
+}
+.search-box button:hover {
+    cursor: pointer;
+}
+.input-wrap {
+    margin-top: 3em;
+    border: 1px solid #606060;
+    width: 16.5em;
+}
+
+
+/*----- 테이블 -----*/
+.text-wrap {
+    margin-top: 2em;
+    padding: 0.7em 2.1vw;
+}
+.text {
+    color: #808080;
+}
+.number {
+    color: #1f1f1f;
+    font-weight: 700;
+}
+.table-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
+}
+table.noti-table {
+    border-collapse: collapse;
+    border-top: 2px solid #1f1f1f;
+    width: 96vw;
+}
+.noti-table td:not(tfoot td, .writing-btn td) {
+    padding: 0.7em 3em;
+    border: 1px solid #cccccc;
+    border-left: none;
+    border-right: none;
+    line-height: 2.3em;
+    color: #333333;
+}
+.noti-table td i {
+    color: #808080;
+    font-size: 0.9em;
+}
+.noti-table td>a {
+    color: #1f1f1f;
+    text-decoration: none;
+    font-weight: 500;
+}
+tr.none td {
+	padding: 2em 0;
+	text-align: center;
+	color: #b1b1b1;
+}
+span.red {
+    color: #db0b2e;
+    font-weight: 600;
+    font-size: 0.8em;
+}
+tbody tr:not(.none, .writing-btn):hover {
+    background-color: #f7f7f7;
+    cursor: pointer;
+}
+.noti-table tbody tr:hover .hover-underline {
+    text-decoration: underline;
+}
+
+.noti-table tfoot td {
+    padding: 3em;
+}
+.writing-btn td {
+	padding: 1em 0;
+	text-align: right;
+	border-bottom: none;
+}
+.writing-btn button {
+	border: none;
+	padding: 1em 2em;
+	background-color: #333333;
+	color: #f5f5f5;
+	font-size: 0.9rem;
+}
+.writing-btn button:hover {
+	background-color: #131313;
+	cursor: pointer;
+}
+
+
+/*----- 페이징 처리 -----*/
+.paging {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+.paging>li {
+    border: 1px solid #606060;
+    width: 3em;
+    height: 3em;
+    text-align: center;
+    line-height: 3em;
+    margin-right: 0.25em;
+}
+.paging>li:first-child, .paging>li:nth-child(2), 
+.paging>li:nth-last-child(2), .paging>li:last-child 
+{
+    border: none;
+    width: 2.2em;
+    font-size: 1.2em;
+    line-height: 2.6em;
+}
+.paging li i {
+    color: #808080;
+}
+.paging li>a {
+    text-decoration: none;
+    color: #606060;
+    font-weight: 400;
+}
+.now {
+    background-color: #1f1f1f;
+    color: whitesmoke;
+    font-weight: 500;
+    text-decoration: underline;
+}
+.paging li:not(li.now):hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.paging .disable {
+    display: none;
+}

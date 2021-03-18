@@ -1,0 +1,183 @@
+* {
+	user-select: none; /* 사용자가 드래그 못하게 */
+}
+
+#tophr {
+	margin-top: 50px;
+}
+.menubar-wrap {
+	margin-top: 44px;
+}
+
+#hhh1 {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+#hh1 {
+	margin-top: 1em;
+	font-size: 2.5em;
+	font-weight: 500;
+	color: #222;
+	border-top: 1px solid #606060;
+	padding: 0.35em 0;
+}
+
+.texth {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+h3, h4 {
+	display: inline-block;
+}
+
+.menubar {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	padding: 0 0.5em;
+}
+
+.menubar li {
+	margin-top: 20px;
+	justify-content: center;
+	padding-top: 17px;
+	width: 100%;
+	height: 37px;
+	text-align: center;
+	background-color: #999;
+	text-decoration: none;
+}
+
+#first_li, #second_li {
+	text-decoration: none;
+	color: white;
+}
+
+#first_li {
+	background-color: #db0b2e;
+}
+
+#second_li:hover {
+	cursor: pointer;
+}
+.memtable-wrap {
+	width: 80%;
+	margin-left: auto; margin-right: auto;
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	margin: 0.5em;
+	border-top: 2px solid #222;
+	border-bottom: 2px solid #222;
+}
+
+th {
+	width: 30%;
+	background-color: #EBEBEB;
+	padding: 15px 30px 15px 0;
+	text-align: right;
+	font-size: 0.87em;
+}
+
+td {
+	width: 100%;
+	background-color: WHITE;
+	padding: 15px 0px 15px 50px;
+	text-align: left;
+	font-size: 0.87em;
+}
+
+.must::before {
+	content: "*";
+	color: #E94040;
+}
+
+.redstar {
+	color: #E94040;
+}
+
+.forred {
+	display: inline-block;
+	color: #E94040;
+	font-size: 13px;
+	padding-left: 5px;
+}
+
+input[type=text], input[type=password] {
+	width: 290px;
+	height: 51px;
+	color: #aaa;
+	padding: 12px 20px;
+	margin: 8px 0;
+	font-size: 17px;
+	border: 2px solid #ddd;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+#phone, #cellphone {
+	width: 165px;
+	height: 51px;
+}
+
+select {
+	width: 117px;
+	height: 50px;
+	padding-top: 3px;
+	font-size: 17px;
+	color: #999;
+	border: 2px solid #ddd;
+	font-size: 16px;
+}
+
+.updateBtn {
+	width: 290px;
+	height: 53px;
+	border: none;
+	background-color: #db0b2e;
+	padding: .8em .5em;
+	color: white;
+	border-radius: 5px;
+	font-size: 18px;
+	font-weight: 500;
+	margin: 4px 2px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.quitbtn {
+	width: 150px;
+	height: 35px;
+	border: none;
+	background-color: #EBEBEB;
+	font-size: 13px;
+	font-weight: bold;
+	cursor: pointer;
+	float: right;
+	display: block;
+}
+
+#updateBtn {
+	display: block;
+	margin: 50px auto 50px;
+}
+
+.red-border {
+	border-color: red !important;
+	outline-color: red !important;
+}
+.btn {
+	margin-top: 4em;
+	margin-bottom: 7em;
+	
+}

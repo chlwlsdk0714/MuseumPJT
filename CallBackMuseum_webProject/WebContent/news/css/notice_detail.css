@@ -1,0 +1,62 @@
+.title-wrap {
+	display: flex;
+	justify-content: center;
+}
+.title {
+	margin-top: 1.225em;
+	font-size: 2.5em;
+	font-weight: 500;
+	color: #222222;
+	border-top: 1px solid #606060;
+	padding: 0.35em 0;
+	user-select: none;
+}
+
+.table-wrap {
+	margin-top: 4em;
+	display: flex;
+	justify-content: center;
+}
+.noti-detail-table {
+	border-collapse: collapse;
+	width: 87vw;
+	margin-bottom: 5em;
+}
+.noti-detail-table td {
+	padding: 0.9em 0.1em;
+	border-left: none;
+	border-right: none;
+	color: #222222;
+}
+td.detail-title {
+	padding: 0.25em 0 1.5em 0;
+	color: #222222;
+	font-size: 1.3em;
+	border-bottom: 1px solid #333333 !important;
+}
+td.writer {
+	color: #929292;
+	font-weight: 500;
+}
+td.content {
+	font-size: 0.87em;
+	line-height: 1.8em;
+	padding: 2.5em 6vw 5em 6vw;
+	border-bottom: 1px solid #333333;
+	white-space: pre-wrap;
+}
+.btn td {
+	text-align: right;
+}
+.btn button {
+	border: none;
+	padding: 1em 2em;
+	background-color: #333333;
+	color: #f5f5f5;
+	font-size: 0.9rem;
+	margin-left: 0.3em;
+}
+.btn button:hover {
+	background-color: #131313;
+	cursor: pointer;
+}

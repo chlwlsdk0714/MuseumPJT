@@ -1,0 +1,162 @@
+/* #hat::before {
+	content: '';
+	width: 3px;
+	height: 3px;
+	background-color: red;
+	top: 8px;
+} */
+#hhh1 {
+	display: flex;
+	justify-content: center;
+}
+#hh1 {
+	margin-top: 1.225em;
+	font-size: 2.5em;
+	font-weight: 500;
+	color: #222222;
+	border-top: 1px solid #606060;
+	padding: 0.35em 0;
+	margin-bottom: 30px;
+}
+#underline {
+   border-bottom: 4px solid #db0b2e;
+   padding: 0.35em 0;
+}
+
+.quit-form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+#put {
+   position: relative;
+   margin-bottom: 30px;
+}
+input[type=text], input[type=password] {
+   width: 350px;
+   height: 55px;
+   color: #aaa;
+   padding: 8px 0;
+   margin: 5px;
+   font-size: 17px;
+   border: 2px solid #ddd;
+   border-radius: 4px;
+   box-sizing: border-box;
+}
+.info {
+    background-color: #f5f5f5;
+    padding: 30px 15px;
+    position: relative;
+    width: 1100px;
+}
+.info p {
+   text-align: center;
+    padding: 0 25px 20px 25px;
+    text-weight: bold;
+}
+
+li {
+   display: block;
+   list-style: none;
+   padding: 10px;
+}
+
+.btn1space {
+   display: flex;
+   justify-content: center;
+   margin: 20px 10px;
+}
+
+.space {
+   margin: 20px 0 0 0;
+}
+
+.space p {
+   color: #606060;
+}
+
+.Btn {
+   background-color: #606060;
+   color: #f5f5f5;
+   padding: 20px;
+   width: 140px;
+   margin: 10px 10px 20px 10px;
+   margin-bottom: 5em;
+   border-radius: 5px;
+}
+
+.Btn:hover {
+	background-color: #1f1f1f;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+/* #underline {
+   border-bottom: 2px solid red;
+   padding: 0.35em 0;
+}
+
+.quit-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+input[type=text], input[type=password] {
+   width: 350px;
+   height: 55px;
+   color: #aaa;
+   padding: 8px 0;
+   margin: 5px;
+   font-size: 17px;
+   border: 2px solid #ddd;
+   border-radius: 4px;
+   box-sizing: border-box;
+}
+
+.info {
+    background-color: #f5f5f5;
+    padding: 30px 15px;
+    position: relative;
+}
+.info p {
+	text-align: center;
+    padding: 0 25px 20px 25px;
+    text-weight: bold;
+}
+li {
+   display: block;
+   list-style: none;
+   padding: 10px;
+}
+.btn1space {
+   display: flex;
+   justify-content: center;
+   margin: 20px 10px;
+}
+
+.space {
+   margin: 20px 0 0 0;
+}
+
+.space p {
+   color: #606060;
+}
+
+.Btn {
+   background-color: #606060;
+   color: #f5f5f5;
+   padding: 20px;
+   width: 140px;
+   margin: 10px 10px 20px 10px;
+   border-radius: 5px;
+} */

@@ -1,0 +1,147 @@
+* {
+	user-select: none;	/* 사용자가 드래그 못하게 처리*/
+}
+#hhh1 {
+	display: flex;
+	justify-content: center;
+	/* margin-top: 20px; */
+}
+
+#hh1 {
+	margin-top: 1.225em;
+	font-size: 2.5em;
+	font-weight: 500;
+	color: #222;
+	border-top: 1px solid #606060;
+	padding: 0.35em 0;
+}
+
+.texth {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.memtable-wrap {
+	width: 80%;
+	margin-left: auto; margin-right: auto;
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	margin: 0.5em;
+	border-top: 2px solid #222;
+	border-bottom: 2px solid #222;
+}
+
+th {
+	width: 20%;
+	background-color: #EBEBEB;
+	padding: 15px 30px 15px 0;
+	text-align: right;
+	font-size: 0.87em;
+}
+td {
+	width: 100%;
+	background-color: WHITE;
+	padding: 15px 0px 15px 50px;
+	text-align: left;
+	font-size: 0.87em;
+}
+
+.must::before {
+	content: "*";
+	color: #E94040;
+}
+
+.redstar {
+	color: #E94040;
+}
+
+.forred {
+	display: inline-block;
+	color: #E94040;
+	font-size: 13px;
+	padding-left: 15px;
+}
+
+input[type=text], input[type=password] {
+	width: 290px;
+	height: 51px;
+	color: #aaa;
+	padding: 12px 20px;
+	margin: 8px 0 8px 30px;
+	font-size: 17px;
+	border:2px solid #ddd;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+#phone, #cellphone {
+	width: 165px;
+	height: 51px;
+}
+
+select {
+	width: 117px; 
+	height: 50px;
+	padding-top: 3px;
+	font-size: 17px;
+	color: #999;
+	border: 2px solid #ddd;
+	font-size: 16px;
+	margin-left:30px;
+}
+
+.joinbtn {
+	width: 290px;
+	height: 51px;
+	border: none;
+	background-color: #db0b2e;
+	padding: .8em .5em;
+	color: white;
+	border-radius: 5px;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+.genderradio{
+	margin-left: 130px;
+}
+
+#phone, #cellphone {
+	margin-left: 0;
+}
+
+#newmemBtn {
+	display: block;
+	margin: 50px auto 50px;
+}
+.black {
+	color: black;
+}
+.red {
+	color: #db0b2e;
+}
+
+/* 중복 체크 메시지 */
+.hidden {
+	visibility: hidden;
+}
+
+.warning {
+	display: inline-block;
+	color: #E94040;
+	font-size: 13px;
+	padding-left: 15px;
+}
+
+.red-border {
+	border-color: red !important;
+	outline-color: red !important;
+}
+

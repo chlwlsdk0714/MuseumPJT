@@ -1,0 +1,185 @@
+.title-wrap {
+	display: flex;
+	justify-content: center;
+}
+.title {
+	margin-top: 1.225em;
+	font-size: 2.5em;
+	font-weight: 500;
+	color: #222222;
+	border-top: 1px solid #606060;
+	padding: 0.35em 0;
+	user-select: none;
+}
+
+
+.rev-table-wrap {
+	margin-top: 4em;
+	display: flex;
+	justify-content: center;
+}
+.rev-detail-table {
+	border-collapse: collapse;
+	width: 1000px;
+	border-bottom: 1px solid #333333;
+	margin-bottom: 1em;
+}
+.rev-detail-table td {
+	padding: 0.9em 0.1em;
+	border-left: none;
+	border-right: none;
+	color: #222222;
+}
+td.date {
+	padding: 0.6em 0;
+}
+td.detail-title {
+	padding: 0.25em 0 1.5em 0;
+	color: #222222;
+	font-size: 1.3em;
+	border-bottom: 1px solid #333333 !important;
+}
+.cate {
+	background-color: #db0b2e;
+	padding: 0.3em 0.9em;
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #fff;
+	margin-right: 0.6em;
+}
+td.writer {
+	color: #929292;
+	font-weight: 500;
+	text-align: right;
+}
+td.img {
+	padding: 2em 0;
+	text-align: center;
+}
+img {
+	width: 100%;
+	height: auto;	
+}
+td.content {
+	font-size: 0.9rem;
+	line-height: 2em;
+	padding: 4em 5em 6em 4em;
+	white-space: pre-wrap;
+}
+
+
+/* 목록 수정 삭제 버튼들 */
+.btn td {
+	text-align: right;
+}
+.btn button {
+	border: none;
+	padding: 1em 2em;
+	background-color: #333333;
+	color: #f5f5f5;
+	font-size: 0.9rem;
+	margin-left: 0.3em;
+}
+.btn button:hover {
+	background-color: #131313;
+	cursor: pointer;
+}
+
+
+/* 댓글 테이블 */
+.comment-container {
+	display: flex;
+	justify-content: center;
+}
+.comment-table {
+	width: 900px;
+	border-collapse: collapse;
+	margin-bottom: 10em;
+}
+.comment-table tr {
+	margin: 0;
+}
+.comment-table td {
+	text-align: left;
+}
+.comment-label td {
+	padding: 1em 0.5em;
+	border-bottom: 1px solid #ccc;
+	font-size: 1.1rem;
+}
+.comment-name td {
+	font-size: 1rem;
+	padding: 1.5em 0 0.5em 3em;
+}
+.comment-content td {
+	padding: 0.5em 3.5em 0.5em 6em;
+	font-size: 0.83rem;
+	line-height: 1.6em;
+	color: #333;
+}
+.comment-date td {
+	padding: 0.5em 0 2em 6em;
+	font-size: 0.8rem;
+	color: #b1b1b1;
+	border-bottom: 1px solid #ccc;
+}
+.comment-date td a {
+	padding: 0.5em 0.3em;
+}
+.comment-date td a:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+.comment-name:nth-child(2n),
+.comment-content:nth-child(2n-1),
+.comment-date:nth-child(2n) {
+	background-color: #f7f7f7;
+}
+.comment-table tfoot td {
+	padding-top: 3em;
+	padding-left: 1em;
+}
+#comm-input {
+	padding: 1em;
+}
+#writing-label {
+	padding: 1em 0;
+	color: #333;
+}
+#writing-btn {
+	text-align: right;
+	padding: 0.5em 0;
+}
+#writing-btn input {
+	border: none;
+	padding: 1em 2em;
+	background-color: #333333;
+	color: #f5f5f5;
+	font-size: 0.9rem;
+	margin-left: 0.3em;
+}
+#writing-btn input:hover {
+	background-color: #131313;
+	cursor: pointer;
+}
+.editing-box {
+	width: 900px;
+	height: 100px;
+	padding: 1em;
+	line-height: 1.6em;
+	background-color: #f7f7f7;
+}
+.editing-btn-wrap {
+	text-align: right;
+	padding: 0.5em 0;
+	border-bottom: 1px solid #ccc;
+}
+input.editing-btn {
+	padding: 0.6em 1.2em;
+	border: 2px solid #a0a0a0;
+	margin-bottom: 1.2em;
+	margin-left: 0.6em;
+}
+.none {
+	display: none;
+}

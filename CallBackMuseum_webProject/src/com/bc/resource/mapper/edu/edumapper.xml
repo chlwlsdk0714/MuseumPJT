@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu">
+	<select id="allList" resultType="eduvo">
+		SELECT * FROM MU_EDU WHERE EDU_STATUS = 'ED01'
+	</select>
+	
+	<select id="eduvo" resultType="eduvo" parameterType="string">
+		SELECT * FROM MU_EDU
+		WHERE EDU_TITLE = #{edu_title} AND EDU_STATUS = 'ED01'
+	</select>
+	
+	<select id="eduvoselect" resultType="eduvo" parameterType="string">
+		SELECT * FROM MU_EDU
+		WHERE EDU_IDX = #{edu_idx} AND EDU_STATUS = 'ED01'
+	</select>
+	
+	<insert id="eduinsert" parameterType="com.bc.edu.model.vo.EducationVO">
+	INSERT INTO MU_EDU(
+	EDU_IDX, EDU_NAME, EDU_TITLE, EDU_CONTENTS, EDU_IMGNAME, EDU_IMGLOCAL, EDU_STATUS
+	)
+	VALUES(MU_EDU_SEQ.NEXTVAL ,#{edu_name}, #{edu_title},#{edu_contents},
+	 #{edu_imgname},#{edu_imglocal}, 'ED01')
+	</insert>
+	
+	<update id="edudelete" parameterType="string">
+			UPDATE MU_EDU
+			SET EDU_STATUS = 'ED02' 
+			WHERE EDU_IDX = #{temp}
+	</update>
+	
+	<update id="eduupdate" parameterType="com.bc.edu.model.vo.EducationVO">
+			UPDATE MU_EDU
+		<choose>
+			<when test="edu_imgname != ''">
+				SET EDU_NAME = #{edu_name}, EDU_TITLE = #{edu_title}, EDU_CONTENTS = #{edu_contents}
+					EDU_IMGNAME = #{edu_imgname}, EDU_IMGLOCAL = #{edu_imglocal}
+				WHERE EDU_IDX = #{edu_idx}
+			</when>
+			<otherwise>
+				SET EDU_NAME = #{edu_name}, EDU_TITLE = #{edu_title}, EDU_CONTENTS = #{edu_contents}
+				WHERE EDU_IDX = #{edu_idx}
+			</otherwise>
+		</choose>
+	</update>
+</mapper>

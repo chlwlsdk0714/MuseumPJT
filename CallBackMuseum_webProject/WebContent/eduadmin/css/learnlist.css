@@ -1,0 +1,161 @@
+a:link { color: black; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: black; text-decoration: underline;}
+
+.title-wrap {
+    display: flex;
+    justify-content: center;
+}
+.title {
+    margin-top: 1.225em;
+    font-size: 2.5em;
+    font-weight: 500;
+    color: #222222;
+    border-top: 1px solid #606060;
+    padding: 0.35em 0;
+}
+.title_area {
+	margin-top: 5em;
+}
+.sch_area {
+	margin-top: 3em;
+	margin-bottom: 3em;
+}
+.search_box {
+	display: flex;
+	justify-content: center;
+	height: 50px;
+	margin-bottom: 3em;
+}
+.input_wrap input {
+	height: 44px;
+}
+
+.sub_title {
+	margin-top: 0;
+	margin-bottom: 0;
+	text-align: center;
+	font-size: 2.25em;
+	font-weight: 400;
+	line-height: 1;
+	margin: 30px 0 40px
+}
+.sub_title span {
+	display: inline-block;
+	border-top: 1px solid #0a1923;
+	padding: 15px 1px;
+}
+
+
+.sect1 {
+	display: flex;
+}
+.list_type4-career {
+	margin: 0;
+	list-style-type:none; 
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	margin-top: 2em;
+	margin-bottom: 3em;
+}
+.list_type4-career li {
+	width: 25%;
+	padding: 1em;
+	padding-bottom: 2em;
+	border: 4px solid #1b1b1b;
+	font-size: 1.1rem;
+}
+.list_type4-career li:not(:last-child) {
+	margin-right: 30px;
+}
+
+.place_type {
+	padding: 0 5px;
+    display: block;
+   /*  min-height: 159px; */
+}
+
+.event-info {
+	padding-top: 23px;
+}
+.selectspan {
+	padding: 0px;
+	margin: 10px;
+	width: 100%;	
+	display: inline-block;
+}
+.red {
+	color: #db0b2e;
+}
+.underline {
+	text-decoration: underline;
+	font-weight: 500;
+	font-size: 1.2rem;
+}
+.link-a-btn {
+   padding-top: 30px;
+   display: flex;
+   justify-content: flex-end;
+   padding-right: 100px;
+   margin-bottom: 3em;
+}
+
+.a_btn {
+	padding: 10px;
+	margin: 5px;
+	display: inline-block;
+	background-color: gray;
+	border: 1px solid gray;
+	border-radius: 5px;
+	text-decoration: none;
+	color: #1b1b1b;
+	font-weight: 500;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+
+/*----- 페이징 처리 -----*/
+.paging {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+.paging>li {
+    border: 1px solid #606060;
+    width: 3em;
+    height: 3em;
+    text-align: center;
+    line-height: 3em;
+    margin-right: 0.25em;
+}
+.paging>li:first-child, .paging>li:nth-child(2), 
+.paging>li:nth-last-child(2), .paging>li:last-child 
+{
+    border: none;
+    width: 2.2em;
+    font-size: 1.2em;
+    line-height: 2.6em;
+}
+.paging li i {
+    color: #808080;
+}
+.paging li>a {
+    text-decoration: none;
+    color: #606060;
+    font-weight: 400;
+}
+.now {
+    background-color: #1f1f1f;
+    color: whitesmoke;
+    font-weight: 500;
+    text-decoration: underline;
+}
+.paging li:not(li.now):hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.paging .disable {
+    display: none;
+}

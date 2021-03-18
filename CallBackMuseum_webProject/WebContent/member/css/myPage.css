@@ -1,0 +1,68 @@
+#hhh1 {
+	display: flex;
+	justify-content: center;
+}
+
+#hh1 {
+	margin-top: 1.225em;
+	font-size: 2.5em;
+	font-weight: 500;
+	color: #222222;
+	border-top: 1px solid #606060;
+	padding: 0.35em 0;
+	margin-bottom: 30px;
+}
+h5 {
+	margin: 4em;
+}
+.pwdChk-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#put, #put2 {
+	position: relative;
+	margin-bottom: 30px;
+}
+
+input[type=password],[type=text] {
+	width: 290px;
+	height: 60px;
+	color: #aaa;
+	padding: 12px 20px;
+	margin: 8px 0;
+	font-size: 17px;
+	border: 2px solid #ddd;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+
+.mypagebtn {
+	background-color: #db0b2e;
+	width: 290px;
+	border: none;
+	text-decoration: none;
+	height: 60px;
+	padding: .8em .5em;
+	color: white;
+	border-radius: 5px;
+	font-size: 19px;
+	font-weight: 500;
+	margin: auto;
+	margin-bottom: 80px;
+	cursor: pointer;
+}
+
+#showPwd {
+	box-sizing: border-box;
+	display: inline-block;
+	width: 30px;
+	color: gray;
+	text-align: center;
+	user-select: none;
+	position: absolute;
+	top: 25px;
+	right: 10px;
+}

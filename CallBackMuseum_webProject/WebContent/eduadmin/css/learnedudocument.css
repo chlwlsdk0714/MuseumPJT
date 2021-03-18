@@ -1,0 +1,154 @@
+ a:link { color: black; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: black; text-decoration: underline;}
+
+.title-wrap {
+    display: flex;
+    justify-content: center;
+}
+.title {
+    margin-top: 1.225em;
+    font-size: 2.5em;
+    font-weight: 500;
+    color: #222222;
+    border-top: 1px solid #606060;
+    padding: 0.35em 0;
+}
+.program_list_tit {
+	text-align: center;
+	font-size: 2.25em;
+	font-weight: 400;
+	line-height: 1;
+	margin: 30px 0 40px
+}
+
+.sub_title {
+	margin-top: 0;
+	margin-bottom: 0;
+	text-align: center;
+	font-size: 2.25em;
+	font-weight: 400;
+	line-height: 1;
+	margin: 30px 0 40px
+}
+
+.sub_title span {
+	display: inline-block;
+	border-top: 1px solid #0a1923;
+	padding: 6px 1px;
+}
+
+.sub_title+p {
+	position: relative;
+	text-align: center;
+	font-size: 0.875em;
+	font-weight: 400;
+}
+
+/* 검색 박스 */
+.sch_area {
+	margin-top: 3em;
+	margin-bottom: 3em;
+}
+.search_box {
+	display: flex;
+	justify-content: center;
+	height: 50px;
+	margin-bottom: 3em;
+}
+.input_wrap input {
+	height: 44px;
+}
+
+.docform {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* 청소년, 성인, 전문인 리스트 */
+#list_div {
+	margin-top: 3em;
+	margin-bottom: 3em;
+	display: flex;
+	justify-content: center;
+}
+.list_ul li {
+	margin: 15px;
+}
+.list_ul li:not(:last-child) {
+	border-right: 3px solid #b1b1b1;
+	padding-right: 30px;
+}
+.list_ul a {
+	color: #1b1b1b;
+	font-weight: 500;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+
+/* 추가 수정 삭제 */
+.link-a-btn {
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 100px;
+	margin-bottom: 3em;
+}
+.a_btn {
+	padding: 10px;
+	margin: 5px;
+	display: inline-block;
+	background-color: gray;
+	border: 1px solid gray;
+	border-radius: 5px;
+	text-decoration: ;
+}
+
+
+/* 페이징 */
+.paging {
+	margin-top: 5em;
+	margin-bottom: 3em;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+.paging>li {
+    border: 1px solid #606060;
+    width: 3em;
+    height: 3em;
+    text-align: center;
+    line-height: 3em;
+    margin-right: 0.25em;
+}
+.paging>li:first-child, .paging>li:nth-child(2), 
+.paging>li:nth-last-child(2), .paging>li:last-child 
+{
+    border: none;
+    width: 2.2em;
+    font-size: 1.2em;
+    line-height: 2.6em;
+}
+.paging li i {
+    color: #808080;
+}
+.paging li>a {
+    text-decoration: none;
+    color: #606060;
+    font-weight: 400;
+}
+.now {
+    background-color: #1f1f1f;
+    color: whitesmoke;
+    font-weight: 500;
+    text-decoration: underline;
+}
+.paging li:not(li.now):hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.paging .disable {
+    display: none;
+}
+

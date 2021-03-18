@@ -1,0 +1,161 @@
+body {
+	margin: 0;
+}
+.title-wrap {
+	display: flex;
+	justify-content: center;
+}
+.title {
+	margin-top: 1.225em;
+	font-size: 2.5em;
+	font-weight: 500;
+	color: #222222;
+	border-top: 1px solid #606060;
+	padding: 0.35em 0;
+}
+.line-nav-wrap {
+	margin-top: 5em;
+	display: flex;
+	justify-content: center;
+}
+.line-nav {
+	/* background-color: beige; */
+	border-bottom: 1px solid #b1b1b1;
+	width: 1400px;
+}
+.line-nav ul {
+	display: flex;
+	padding: 0;
+	margin: 0;
+}
+.line-nav li {
+	list-style: none;
+	padding: 0.7em 0;
+	margin: 0 2em 0.04em 0.1em;
+	font-size: 0.8em;
+	font-weight: 500;
+	color: #606060;
+	/* border-bottom: 3px solid #db0b2e; */
+}
+.line-nav li:hover {
+	cursor: pointer;
+}
+
+
+.now {
+	border-bottom: 3px solid #db0b2e;
+}
+li.now {
+	color: #1f1f1f;
+	font-weight: 600;
+}
+
+table {
+	border-collapse: collapse;
+	width: 1200px;
+	border-top: 2px solid #999;
+	border-bottom: 2px solid #999;
+}
+.row-list td {
+	border-top: 1px solid #A6A6A6;
+	border-bottom: 1px solid #A6A6A6;
+	height: 8em;
+	color: #999;
+	padding-left: 50px;
+}
+.no-writing td {
+	text-align: center;
+	padding: 4em;
+	margin-bottom: 3em;
+}
+.title {
+	margin-top: 1.225em;
+	font-size: 2.5em;
+	font-weight: 500;
+	color: #222222;
+	border-top: 1px solid #606060;
+	padding: 0.35em 0;
+	
+}
+.userAsk-wrap {
+	display: flex;
+	justify-content: center;
+}
+.userAsk {
+	padding: 1em;
+	padding-left: 20px;
+	width: 1400px;
+	align-item: center;
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: #606060;
+}
+
+.table-wrap {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 0.3em;
+}
+
+#subject {
+	font-size: 1.5em;
+	font-weight: 500;
+	font-style: bold;
+	color: black;
+}
+
+
+.dash {
+	font-size: 1em;
+	font-weight: 500;
+	font-style: bold;
+	color: #999;
+}
+.ans {
+	font-size: 1em;
+	color: gray;
+	background-color: #F1F1F1;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	width: 100px;
+}
+.ans-complete {
+	color: red;
+}
+
+.butBox {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin: 10px 0;
+	margin-top: 2em;
+	padding: 0;
+	margin-bottom: 5em;
+}
+.butBox li {
+	box-sizing: border-box;
+	border: 1px solid black;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	padding: 0;
+	line-height: 50px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.butBox li:hover {
+	background-color: #333;
+	color: white;
+}
+
+.now-page {
+	background-color: #1F1F1F;
+	color: white;
+}
+.disable {
+	display: none;
+}
